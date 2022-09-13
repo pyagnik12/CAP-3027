@@ -14,11 +14,11 @@ int stepCounter;
 
 boolean colorButton;// Reset in start
 boolean gradualButton; // Reset in start
-boolean on = false;
+boolean startButton = false;
 
 
-float x = 0;
-float y = 0;
+float x = 400;
+float y = 400;
 
 int step = 1;
 
@@ -62,12 +62,13 @@ void Start1() {
   background(255, 229, 180);
 
   currentIterationValue = 0;
-  on = false;
+  startButton = false;
   
   if(gradualButton == true){
 
-    on = true;
-    randomWalkGradual();
+    startButton = true;
+    currentIterationValue = 0;
+    
     
   }
 
@@ -188,22 +189,24 @@ public void randomNoGradual() {
     }
   }
 }
-public void randomWalkGradual() {
-
-  if(gradualButton == true && on == true) {
-
-    println("itrationValue = "+ itrationValue+" currentIterationValue = "+currentIterationValue);
-
-    currentIterationValue = 0;
-
-    if(currentIterationValue < itrationValue){
-      println("here");
-
-      for(int i = 0; i < stepCounter; i++){
-        println("here ");
+public void randomWalkGradual() {  
+  //Check if gradual checkbox is slected.
+  if(gradualButton == true && startButton == true){
+    //Get Step Count stepCounter 
+    println("here");
+    
+    
+    //Go through all the iterations
+    if(currentIterationValue<itrationValue){
+      //Step Count stepCounter per frame
+      for(int i=0; i<stepCounter; i++){
+        //Check if color checkbox is slected.
         if(colorButton == true){
+          //Change color scale
           stroke((int)map(currentIterationValue,0,itrationValue,0,255));
         }
+        
+        //Switch Case of Direction
         switch(randomwalk()) {
         case 0: 
           //Move Up
@@ -254,13 +257,21 @@ public void randomWalkGradual() {
             break;
           }
         }
-
+        //Increment 
+        currentIterationValue++;
       }
-      currentIterationValue++;
     }
   }
 }
 
 void draw() {
+
+  if(gradualButton == true && startButton == true) 
+  
+  {
+
+    randomWalkGradual();
+
+  }
 
 }
