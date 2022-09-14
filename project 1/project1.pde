@@ -42,7 +42,7 @@ void setup() {
   StepCount.setPosition(190, 70);
   StepCount.setSize(400, 35);
   StepCount.setColorLabel(color(31, 70, 144));
-  StepCount.setRange( 1, 10000);
+  StepCount.setRange(1, 10000);
   StepCount.setCaptionLabel("Step Count");
 
   Color = cp5.addToggle("Color");
@@ -68,6 +68,9 @@ void Start1() {
 
   currentIterationValue = 0;
   startButton = false;
+
+  x = 400;
+  y=400;
 
   if (gradualButton == true) {
     startButton = true;
@@ -154,6 +157,8 @@ void walk() {
   
   }
 }
+
+
 public void randomNoGradual() {
   
   for (int i = 0; i < itrationValue; i++) {
@@ -167,6 +172,7 @@ public void randomNoGradual() {
     walk();
   }
 }
+
 
 public void randomWalkGradual() {
   if (gradualButton == true && startButton == true) {
