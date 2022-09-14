@@ -42,7 +42,7 @@ void setup() {
   StepCount.setPosition(190, 70);
   StepCount.setSize(400, 35);
   StepCount.setColorLabel(color(31, 70, 144));
-  StepCount.setRange(0, 10000);
+  StepCount.setRange( 1, 10000);
   StepCount.setCaptionLabel("Step Count");
 
   Color = cp5.addToggle("Color");
@@ -115,9 +115,9 @@ void walk() {
       y = y - 1;
     }
 
-    else {
-      point(x, y + 1);
-    }
+   
+      point(x, y);
+  
   }
   if (direction == 1) {
     y = y - 1;
@@ -126,9 +126,9 @@ void walk() {
       y = y + 1;
     }
 
-    else {
-      point(x, y - 1);
-    }
+    
+      point(x, y);
+    
   }
   if (direction == 2) {
     x = x - 1;
@@ -137,9 +137,9 @@ void walk() {
       x = x + 1;
     }
 
-    else {
-      point(x - 1, y);
-    }
+    
+      point(x, y);
+    
   }
 
   if (direction == 3) {
@@ -149,18 +149,18 @@ void walk() {
       x = x - 1;
     }
 
-    else {
-      point(x + 1, y);
-    }
+    
+      point(x , y);
+  
   }
 }
 public void randomNoGradual() {
-  // Go through all the iterations
+  
   for (int i = 0; i < itrationValue; i++) {
-    // Check if color checkbox is slected.
+    
 
     if (colorButton == true) {
-      // Change color scale
+      
       stroke((int) map(i, 0, itrationValue, 0, 255));
     }
 
