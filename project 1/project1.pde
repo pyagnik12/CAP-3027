@@ -79,8 +79,8 @@ void Start1() {
   }
 
   else {
+    startButton = false;
     
-    randomNoGradual();
   }
 }
 
@@ -197,5 +197,9 @@ void draw() {
 
   {
     randomWalkGradual();
+  }
+
+  if(gradualButton == false && startButton == false){
+    randomNoGradual();
   }
 }
