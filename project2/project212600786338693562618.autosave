@@ -1,0 +1,37 @@
+import controlP5.*;
+ControlP5 cp5;
+
+//UI elements
+
+Button start;
+DropdownList dropdownList;
+Slider stepCount;
+Slider stepRate;
+Slider stepSize;
+Slider stepScale;
+CheckBox box;
+
+
+void setup(){
+
+    size(1200,800);
+    background(47, 143, 157);
+    noStroke();
+    
+    fill(100,100,100);
+    rect(0,0,400,800);
+
+    cp5 = new ControlP5(this);
+
+    start = cp5.addButton("Start");
+    start.setPosition(40,40);
+    start.setColorBackground(color(179, 232, 229));
+    start.setColorLabel(color(76, 103, 147));
+    start.setSize(200,50);
+    start.se(20);
+}
+
+//main function
+void draw(){
+
+}

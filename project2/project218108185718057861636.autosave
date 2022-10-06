@@ -1,0 +1,24 @@
+import controlP5.*;
+ControlP5 cp5;
+
+//UI elements
+
+Button start;
+DropdownList dropdownList;
+Slider stepCount;
+Slider stepRate;
+Slider stepSize;
+Slider stepScale;
+CheckBox box;
+
+
+void setup(){
+
+    size(1200,800);
+
+}
+
+//main function
+void draw(){
+
+}
