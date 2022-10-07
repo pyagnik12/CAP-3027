@@ -50,9 +50,11 @@ void setup(){
     start.setColorBackground(color(187, 222, 214));
     start.setColorLabel(color(23, 70, 162));
     start.setSize(200,50);
+    start.getCaptionLabel().setSize(12);
 
     dropdownList = cp5.addDropdownList("dropDown");
     dropdownList.addItem("Squares",0);
+
     dropdownList.addItem("Hexagons",1);
     dropdownList.setItemHeight(40);
     dropdownList.setBarHeight(35);
@@ -61,6 +63,7 @@ void setup(){
     dropdownList.setColorBackground(color(187, 222, 214));
     dropdownList.setColorLabel(color(23, 70, 162));
     dropdownList.setSize(150,300);
+    dropdownList.getCaptionLabel().setSize(12);
 
     maxStep = cp5.addSlider("maxStep");
     maxStep.setPosition(40,270);
@@ -69,6 +72,7 @@ void setup(){
     maxStep.setColorBackground(color(187, 222, 214));
     maxStep.setColorLabel(color(23, 70, 162));
     maxStep.setRange(100,5000);
+    maxStep.getCaptionLabel().setSize(12);
 
 
     stepRate1 = cp5.addSlider("stepRate1");
@@ -78,6 +82,7 @@ void setup(){
     stepRate1.setColorBackground(color(187, 222, 214));
     stepRate1.setColorLabel(color(23, 70, 162));
     stepRate1.setRange(1,1000);
+    stepRate1.getCaptionLabel().setSize(12);
 
     stepSize1 = cp5.addSlider("stepSize1");
     stepSize1.setPosition(40,410);
@@ -86,6 +91,7 @@ void setup(){
     stepSize1.setColorBackground(color(187, 222, 214));
     stepSize1.setColorLabel(color(23, 70, 162));
     stepSize1.setRange(10,30);
+    stepSize1.getCaptionLabel().setSize(12);
 
     stepScale1 = cp5.addSlider("stepScale1");
     stepScale1.setPosition(40,470);
@@ -94,6 +100,7 @@ void setup(){
     stepScale1.setColorBackground(color(187, 222, 214));
     stepScale1.setColorLabel(color(23, 70, 162));
     stepScale1.setRange(1.0,1.5);
+    stepScale1.getCaptionLabel().setSize(12);
 
     box = cp5.addToggle("constrainSteps");
     box.setPosition(40,530);
@@ -101,6 +108,7 @@ void setup(){
     box.setCaptionLabel("Constrain Step");
     box.setColorBackground(color(187, 222, 214));
     box.setColorLabel(color(23, 70, 162));
+    box.getCaptionLabel().setSize(12);
 
     box1 = cp5.addToggle("simulateTerrain");
     box1.setPosition(40,580);
@@ -108,6 +116,7 @@ void setup(){
     box1.setCaptionLabel("Simulate Terrain");
     box1.setColorBackground(color(187, 222, 214));
     box1.setColorLabel(color(23, 70, 162));
+    box1.getCaptionLabel().setSize(12);
 
     box2 = cp5.addToggle("useStroke");
     box2.setPosition(40,630);
@@ -115,6 +124,7 @@ void setup(){
     box2.setCaptionLabel("Use Stroke");
     box2.setColorBackground(color(187, 222, 214));
     box2.setColorLabel(color(23, 70, 162));
+    box2.getCaptionLabel().setSize(12);
 
     box3 = cp5.addToggle("useRandomSeed");
     box3.setPosition(40,680);
@@ -122,6 +132,7 @@ void setup(){
     box3.setCaptionLabel("Use Random Seed");
     box3.setColorBackground(color(187, 222, 214));
     box3.setColorLabel(color(23, 70, 162));
+    box3.getCaptionLabel().setSize(12);
 
     text = cp5.addTextfield("seedValue");
     text.setPosition(150,680);
@@ -129,6 +140,7 @@ void setup(){
     text.setColorBackground(color(187, 222, 214));
     text.setColorLabel(color(23, 70, 162));
     text.setSize(50,35);
+    text.getCaptionLabel().setSize(12);
 }
 void Start1(){
     println("Start pressed");
@@ -232,19 +244,24 @@ void seedValue(String value){
 
 RandomWalkBase object = null;
 
-public class RandomWalkBase{
+class RandomWalkBase{
 
-    
+    public int walkSquare() {
+        //Generate a random number
+        int walk =(int)random(4);
+        //0=Up  1=Down  2=Left  3=Right
+        return walk;
+    }
 
 }
-public class square extends RandomWalkBase{
+class square extends RandomWalkBase{
     int step = (int)(stepSize*stepScale);
     int xbound = 0;
 
     public square() {
 
         if(constrainStepsButton == true){
-            xbound = 300;
+            xbound = 400;
         }
 
         if(!simulateButton){
@@ -253,7 +270,7 @@ public class square extends RandomWalkBase{
         Draw();
     }
     
-    public void Draw() {
+    void Draw() {
 
 
         if(temp < max){
@@ -262,7 +279,7 @@ public class square extends RandomWalkBase{
                     stroke(2);
                 }
 
-                switch (Update()) {
+                switch (walkSquare()) {
 
                     case 0:
 
@@ -306,7 +323,7 @@ public class square extends RandomWalkBase{
                         }
                     case 3:
                     x = x+step;
-                    if(x > 800){
+                    if(x > 1200){
                         x= x-step;
                     }
                     else{
@@ -329,12 +346,7 @@ public class square extends RandomWalkBase{
     }
 }
 
-public int Update() {
-  //Generate a random number
-  int walk =(int)random(4);
-  //0=Up  1=Down  2=Left  3=Right
-  return walk;
-}
+
 
 public void col (int temp, int x, int y){
     if(simulateButton){
