@@ -24,8 +24,8 @@ int shape,max,stepRate,stepSize;
 boolean constrainStepsButton,simulateButton;
 boolean strokeButton,randomButton;
 int seedValue;
-double stepScale;
 int seed;
+double stepScale;
 
 // my variables
 int x,y;
@@ -54,7 +54,6 @@ void setup(){
 
     dropdownList = cp5.addDropdownList("dropDown");
     dropdownList.addItem("Squares",0);
-
     dropdownList.addItem("Hexagons",1);
     dropdownList.setItemHeight(40);
     dropdownList.setBarHeight(35);
@@ -64,6 +63,7 @@ void setup(){
     dropdownList.setColorLabel(color(23, 70, 162));
     dropdownList.setSize(150,300);
     dropdownList.getCaptionLabel().setSize(12);
+    dropdownList.setCaptionLabel("Squares");
 
     maxStep = cp5.addSlider("maxStep");
     maxStep.setPosition(40,270);
@@ -101,6 +101,8 @@ void setup(){
     stepScale1.setColorLabel(color(23, 70, 162));
     stepScale1.setRange(1.0,1.5);
     stepScale1.getCaptionLabel().setSize(12);
+
+
 
     box = cp5.addToggle("constrainSteps");
     box.setPosition(40,530);
@@ -145,6 +147,12 @@ void setup(){
 void Start1(){
     println("Start pressed");
 
+    
+
+    stepScale = (double)stepScale1.getValue();
+
+    println("step scale"+stepScale);
+
     // reset stuff
     temp = 0;
     x = 600;
@@ -174,7 +182,7 @@ void dropDown(int type){
 
     shape = type;
 
-    if(shape == 1){
+    if(shape == 0){
     
         println("Shape: Square Code: " + shape);
     
@@ -206,11 +214,7 @@ void stepSize1(int value){
 
     println("Step Size: " + stepSize);
 }
-void stepScale1(int value){
 
-    stepScale = (double) value;
-    println("Step Scale: " + stepScale);
-}
 void constrainSteps(boolean value){
 
     constrainStepsButton = value;
@@ -245,7 +249,7 @@ void seedValue(String value){
 RandomWalkBase object = null;
 
 class RandomWalkBase{
-
+    
     public int walkSquare() {
         //Generate a random number
         int walk =(int)random(4);
