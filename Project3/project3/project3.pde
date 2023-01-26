@@ -123,15 +123,13 @@ public class cam {
         0, 1, 0); // Camera Up vector (0, 1, 0 often, but not always, works)
   }
 
-  // Load the position of the images
   public void AddLookAtTarget(PVector lookatTarget) {
-    // Reset vector
+
     lookatTarget.mult(0);
     // Reset counter to beginning
     if (targetNum >= 5) {
       targetNum = 1;
     }
-    // Look at Taget
 
     if (targetNum == 1) {
       lookatTarget.add(-100, 0, 0);
@@ -148,25 +146,20 @@ public class cam {
     }
   };
 
-  // Move to next traget
   public void CycleTarget() {
     if (spaceBar) {
       AddLookAtTarget(lookatTarget);
       // Item counter
       targetNum++;
-      // Reset pressing to remove bouncing.
       spaceBar = false;
     }
   };
 
-  // Zoom to target
   public float Zoom(float scale) {
     if (whealSpun) {
-      // Scale image
       zoom += scale * 0.2;
-      // Reset pressing to remove bouncing.
       whealSpun = false;
-      // Testing
+      
       print("wheel moved");
       return zoom;
     } else {
@@ -333,22 +326,19 @@ public class fan {
     translate(20, 0, 0);
     color1 = 0;
     
-    // HSB color here for color
     colorMode(HSB, 360, 100, 100);
     largeFan.beginShape(TRIANGLE_FAN);
     largeFan.setStroke(true);
 
 
-    // Connectine Point
-    largeFan.fill(color(color1, 100, 100)); // Coloring Segment
+    largeFan.fill(color(color1, 100, 100)); 
     largeFan.vertex(0, 10, 0);
-    // Segment Vertex
     for (float angle = 0; angle <= 360; angle += 360 / 20) {
       float vertexX = 10 + cos(radians(angle)) * 10;
       float vertexY = 10 + sin(radians(angle)) * 10;
 
       color1 += 360 / 20;
-      largeFan.fill(color(color1, 100, 100)); // Coloring Segment
+      largeFan.fill(color(color1, 100, 100)); 
       largeFan.vertex(vertexX, vertexY);
     }
     
@@ -361,22 +351,19 @@ public class fan {
     translate(-10, 0, 0);
     color1 = 0;
   
-    // HSB color here for color
     colorMode(HSB, 360, 100, 100);
     smallFan.beginShape(TRIANGLE_FAN);
     smallFan.setStroke(true);
 
 
-    // Connectine Point
-    smallFan.fill(color(color1, 100, 100)); // Coloring Segment
+    smallFan.fill(color(color1, 100, 100)); 
     smallFan.vertex(0, 10, 0);
-    // Segment Vertex
     for (float angle = 0; angle <= 360; angle += 360 / 6) {
       float vertexX = 10 + cos(radians(angle)) * 10;
       float vertexY = 10 + sin(radians(angle)) * 10;
 
       color1 += 360 / 6;
-      smallFan.fill(color(color1, 100, 100)); // Coloring Segment
+      smallFan.fill(color(color1, 100, 100)); 
       smallFan.vertex(vertexX, vertexY);
     }
    
